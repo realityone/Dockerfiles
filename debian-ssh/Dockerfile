@@ -1,4 +1,4 @@
-FROM tutum/debian:latest
+FROM tutum/ubuntu:latest
 
 # RUN echo "GatewayPorts yes" >> /etc/ssh/sshd_config
 
