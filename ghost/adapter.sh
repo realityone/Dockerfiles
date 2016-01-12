@@ -27,20 +27,16 @@ fi
 if [[ -d "$VOLUME_PATH" ]]; then
     export GHOST_FILE_STORAGE="true"
     
-    if [[ -d "$VOLUME_THEMES_PATH" ]]; then
-        for theme in `ls $VOLUME_THEMES_PATH`
+    mkdir -p "$VOLUME_THEMES_PATH"
+    mkdir -p "$VOLUME_IMAGES_PATH"
+
+    for theme in `ls $VOLUME_THEMES_PATH`
         do
             ln -s "$VOLUME_THEMES_PATH/$theme" "$GHOST_THEMES_PATH"
         done
     else
-        mkdir "$VOLUME_THEMES_PATH"
-    fi
 
-    if [[ -d "$VOLUME_IMAGES_PATH" ]]; then
-        ln -s "$VOLUME_IMAGES_PATH" "$GHOST_IMAGES_PATH"
-    else
-        mkdir "$VOLUME_IMAGES_PATH"
-    fi
+    ln -s "$VOLUME_IMAGES_PATH" "$GHOST_IMAGES_PATH"
 fi
 
 if [[ `echo $GHOST_FILE_STORAGE | tr '[:upper:]' '[:lower:]'` == "true" ]]; then
