@@ -31,11 +31,9 @@ if [[ -d "$VOLUME_PATH" ]]; then
     mkdir -p "$VOLUME_IMAGES_PATH"
 
     for theme in `ls $VOLUME_THEMES_PATH`
-        do
-            ln -s "$VOLUME_THEMES_PATH/$theme" "$GHOST_THEMES_PATH"
-        done
-    else
-
+    do
+        ln -s "$VOLUME_THEMES_PATH/$theme" "$GHOST_THEMES_PATH"
+    done
     ln -sf "$VOLUME_IMAGES_PATH" "$GHOST_IMAGES_PATH"
 fi
 
