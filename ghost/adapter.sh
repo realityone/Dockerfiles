@@ -36,7 +36,7 @@ if [[ -d "$VOLUME_PATH" ]]; then
         done
     else
 
-    ln -s "$VOLUME_IMAGES_PATH" "$GHOST_IMAGES_PATH"
+    ln -sf "$VOLUME_IMAGES_PATH" "$GHOST_IMAGES_PATH"
 fi
 
 if [[ `echo $GHOST_FILE_STORAGE | tr '[:upper:]' '[:lower:]'` == "true" ]]; then
