@@ -29,8 +29,8 @@ config = {
             host: '0.0.0.0',
             port: '2368'
         },
-        
-        fileStorage: process.env.GHOST_FILE_STORAGE.toLowerCase() === 'true'
+
+        fileStorage: process.env.GHOST_FILE_STORAGE === 'true'
     },
 
     // ### Development **(default)**

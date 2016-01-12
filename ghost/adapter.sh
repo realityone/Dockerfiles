@@ -3,7 +3,15 @@
 # reset GHOST_SOURCE and GHOST_CONTENT, 
 # ghost will cover them in production mode
 export GHOST_SOURCE="/usr/src/ghost"
-export GHOST_CONTENT="/usr/src/ghost/content"
+export GHOST_CONTENT="$GHOST_SOURCE/content"
+export GHOST_FILE_STORAGE="false"
+
+# define volume constants
+VOLUME_PATH="/data"
+VOLUME_THEMES_PATH="$VOLUME_PATH/themes"
+VOLUME_IMAGES_PATH="$VOLUME_PATH/images"
+GHOST_THEMES_PATH="$GHOST_CONTENT/themes"
+GHOST_IMAGES_PATH="$GHOST_CONTENT/images"
 
 is_mysql=0
 has_url=0
@@ -13,6 +21,26 @@ if [[ -z "$GHOST_ROOT_URL" ]]; then
     echo "WARNING: You have to specifiy GHOST_ROOT_URL."
 else
     has_url=1
+fi
+
+
+if [[ -d "$VOLUME_PATH" ]]; then
+    export GHOST_FILE_STORAGE="true"
+    
+    if [[ -d "$VOLUME_THEMES_PATH" ]]; then
+        for theme in `ls $VOLUME_THEMES_PATH`
+        do
+            ln -s "$VOLUME_THEMES_PATH/$theme" "$GHOST_THEMES_PATH"
+        done
+    else
+        mkdir "$VOLUME_THEMES_PATH"
+    fi
+
+    if [[ -d "$VOLUME_IMAGES_PATH" ]]; then
+        ln -s "$VOLUME_IMAGES_PATH" "$GHOST_IMAGES_PATH"
+    else
+        mkdir "$VOLUME_IMAGES_PATH"
+    fi
 fi
 
 if [[ `echo $GHOST_FILE_STORAGE | tr '[:upper:]' '[:lower:]'` == "true" ]]; then
