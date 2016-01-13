@@ -38,7 +38,7 @@ if [[ -d "$VOLUME_PATH" ]]; then
 
     for theme in `ls $VOLUME_THEMES_PATH`
     do
-        create_symbolic_link "$VOLUME_THEMES_PATH/$theme" "$GHOST_THEMES_PATH"
+        create_symbolic_link "$VOLUME_THEMES_PATH/$theme" "$GHOST_THEMES_PATH/$theme"
     done
 
     create_symbolic_link "$VOLUME_IMAGES_PATH" "$GHOST_IMAGES_PATH"
