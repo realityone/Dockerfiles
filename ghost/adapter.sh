@@ -42,6 +42,8 @@ if [[ -d "$VOLUME_PATH" ]]; then
     done
 
     create_symbolic_link "$VOLUME_IMAGES_PATH" "$GHOST_IMAGES_PATH"
+    chown -hR user:root "$VOLUME_PATH"
+
 fi
 
 if [[ `echo $GHOST_FILE_STORAGE | tr '[:upper:]' '[:lower:]'` == "true" ]]; then
