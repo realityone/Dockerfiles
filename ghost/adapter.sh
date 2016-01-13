@@ -30,7 +30,6 @@ else
     has_url=1
 fi
 
-
 if [[ -d "$VOLUME_PATH" ]]; then
     export GHOST_FILE_STORAGE="true"
     
@@ -42,7 +41,7 @@ if [[ -d "$VOLUME_PATH" ]]; then
         create_symbolic_link "$VOLUME_THEMES_PATH/$theme" "$GHOST_THEMES_PATH"
     done
 
-    create_symbolic_link "$VOLUME_IMAGES_PATH" -t "$GHOST_IMAGES_PATH"
+    create_symbolic_link "$VOLUME_IMAGES_PATH" "$GHOST_IMAGES_PATH"
 fi
 
 if [[ `echo $GHOST_FILE_STORAGE | tr '[:upper:]' '[:lower:]'` == "true" ]]; then
