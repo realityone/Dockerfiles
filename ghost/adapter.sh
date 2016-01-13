@@ -34,7 +34,9 @@ if [[ -d "$VOLUME_PATH" ]]; then
     do
         ln -s "$VOLUME_THEMES_PATH/$theme" "$GHOST_THEMES_PATH"
     done
-    mount --bind "$VOLUME_IMAGES_PATH" "$GHOST_IMAGES_PATH"
+
+    mv "$GHOST_IMAGES_PATH" "$GHOST_IMAGES_PATH""_back"
+    ln -s "$VOLUME_IMAGES_PATH" -t "$GHOST_IMAGES_PATH"
 fi
 
 if [[ `echo $GHOST_FILE_STORAGE | tr '[:upper:]' '[:lower:]'` == "true" ]]; then
