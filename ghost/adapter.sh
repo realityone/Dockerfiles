@@ -16,6 +16,13 @@ GHOST_IMAGES_PATH="$GHOST_CONTENT/images"
 is_mysql=0
 has_url=0
 
+function create_symbolic_link {
+    if [[ -a "$2" ]]; then
+        mv "$2" "$2""_back"
+    fi
+    ln -s "$1" -T "$2"
+}
+
 if [[ -z "$GHOST_ROOT_URL" ]]; then
     export GHOST_ROOT_URL="http://localhost:2368"
     echo "WARNING: You have to specifiy GHOST_ROOT_URL."
@@ -32,11 +39,10 @@ if [[ -d "$VOLUME_PATH" ]]; then
 
     for theme in `ls $VOLUME_THEMES_PATH`
     do
-        ln -s "$VOLUME_THEMES_PATH/$theme" "$GHOST_THEMES_PATH"
+        create_symbolic_link "$VOLUME_THEMES_PATH/$theme" "$GHOST_THEMES_PATH"
     done
 
-    mv "$GHOST_IMAGES_PATH" "$GHOST_IMAGES_PATH""_back"
-    ln -s "$VOLUME_IMAGES_PATH" -t "$GHOST_IMAGES_PATH"
+    create_symbolic_link "$VOLUME_IMAGES_PATH" -t "$GHOST_IMAGES_PATH"
 fi
 
 if [[ `echo $GHOST_FILE_STORAGE | tr '[:upper:]' '[:lower:]'` == "true" ]]; then
