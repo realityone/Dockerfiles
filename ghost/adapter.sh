@@ -34,7 +34,7 @@ if [[ -d "$VOLUME_PATH" ]]; then
     do
         ln -s "$VOLUME_THEMES_PATH/$theme" "$GHOST_THEMES_PATH"
     done
-    ln -sf "$VOLUME_IMAGES_PATH" "$GHOST_IMAGES_PATH"
+    ln -sf "$VOLUME_IMAGES_PATH" "$GHOST_CONTENT"
 fi
 
 if [[ `echo $GHOST_FILE_STORAGE | tr '[:upper:]' '[:lower:]'` == "true" ]]; then
