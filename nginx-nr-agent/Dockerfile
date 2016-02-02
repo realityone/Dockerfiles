@@ -6,8 +6,6 @@ RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC64107
     apt-get install -y nginx-nr-agent && \
     rm -rf /var/lib/apt/lists/* 
 
-RUN ln -sf /dev/stdout /dev/tty 
-
 ADD entrypoint.py /usr/bin/entrypoint.py
 ADD default.conf /etc/nginx/conf.d/default.conf
 RUN chmod +x /usr/bin/entrypoint.py
