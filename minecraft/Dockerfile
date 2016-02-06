@@ -10,5 +10,6 @@ RUN chmod +x /usr/bin/entrypoint.sh
 
 VOLUME /spigotmc
 WORKDIR /spigotmc
+EXPOSE 25565/tcp
 
 CMD ["/usr/bin/entrypoint.sh"]
