@@ -11,7 +11,9 @@ RUN apt-get update \
         libssl-dev \
         perl \
         make \
-        build-essential
+        build-essential \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN curl -o openresty-$OPENRESTY_VERSION.tar.gz https://openresty.org/download/openresty-$OPENRESTY_VERSION.tar.gz \
     && tar -xzf openresty-$OPENRESTY_VERSION.tar.gz \
